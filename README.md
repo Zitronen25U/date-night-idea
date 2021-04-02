@@ -1,4 +1,4 @@
-# Our App
+# Date Night Idea
 
 ## Contributors
 

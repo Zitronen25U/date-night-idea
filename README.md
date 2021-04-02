@@ -95,3 +95,11 @@
   - We will judge how often at our standups
   - We will communicate that it's time to merge when we feel that we have hit a "User Story" goal
 
+## Top Pitches
+
+- Dating Randomizer
+  - Provide users with list of random activities, food, and drinks from their area so that they can enjoy their first dates without the hassle of planning it!
+
+- Code Fellows Hangouts
+  - Provide users with a place to post their thoughts for other Code Fellows students to see/share their projects
+  - users can like, share, and comment on others posts!

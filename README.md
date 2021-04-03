@@ -8,6 +8,12 @@
 
 - Elijah Prom
 
+
+## About Date Night Idea Randomizer
+
+- Date Night Idea Randomizer is an app that allows users to create individual profiles that allows them to save a list of randomly generated date ideas based off of that users desired date settings!
+
+
 ## Conflict Plan
 
 ### What is the group process to resolve conflict

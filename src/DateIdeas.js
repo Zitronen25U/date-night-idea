@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import DateDisplay from "./DateDisplay";
 
 // import Delete from "./Delete";
 import Forms from "./Form";
@@ -61,6 +62,7 @@ class DateIdeas extends React.Component {
       const restraurant = await axios.get(`http://localhost:3001/dateIdeas`, {
         params: { lat: location.lat, lon: location.lon },
       });
+      this.setState({dates: restraurant.data})
     } catch (err) {
       console.log(err);
     }
@@ -92,6 +94,9 @@ class DateIdeas extends React.Component {
           updateCity={this.updateCity}
           updateInOut={this.updateInOut}
           updateCheckbox={this.updateCheckbox}
+        />
+        <DateDisplay
+        dates={this.state.dates}
         />
       </>
     );

@@ -68,6 +68,13 @@ class DateIdeas extends React.Component {
     }
   };
 
+  
+  addItem = async (item) => {
+    await axios.post(`http://localhost:3001/date/${this.props.email}`, item)
+  }
+
+
+
   //   componentDidMount = () => {
   //     console.log(this.props.properties);
   //     const SERVER = "http://localhost:3001";
@@ -97,6 +104,7 @@ class DateIdeas extends React.Component {
         />
         <DateDisplay
         dates={this.state.dates}
+        addItem={this.addItem}
         />
       </>
     );

@@ -10,6 +10,7 @@ import Profile from "./Profile";
 import IsLoadingAndError from "./IsLoadingAndError";
 import Footer from "./Footer";
 import DateIdeas from "./DateIdeas";
+import ProfileData from "./profileData";
 
 class App extends React.Component {
   render() {
@@ -29,6 +30,7 @@ class App extends React.Component {
               </Route>
               <Route exact path="/profile">
             <Profile />
+            <ProfileData />
             </Route>
             </Switch>
             <Footer />

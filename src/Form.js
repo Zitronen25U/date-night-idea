@@ -7,7 +7,7 @@ class Forms extends React.Component {
   render() {
     return (
       <>
-        <Form onSubmit={(e) => this.sendForm(e)}>
+        <Form onSubmit={(e) => this.props.getLocation(e)}>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Where do you plan on dating</Form.Label>
             <Form.Control

@@ -9,6 +9,7 @@ import Header from "./Header";
 import Profile from "./Profile";
 import IsLoadingAndError from "./IsLoadingAndError";
 import Footer from "./Footer";
+import DateIdeas from "./DateIdeas";
 
 class App extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class App extends React.Component {
         <Router>
           <IsLoadingAndError>
             <Header />
+            <DateIdeas />
             {/* <Switch>
               <Route exact path="/">
                 {this.props.auth0.isAuthenticated ? (

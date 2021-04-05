@@ -27,6 +27,11 @@ class Header extends React.Component {
             Profile
           </Link>
         </Nav.Link>
+                <Nav.Link className="navItem">
+          <Link className="navItem" to="/bio">
+            About Devs
+          </Link>
+        </Nav.Link>
         <Logout />
         <LoginButton />
       </Navbar>

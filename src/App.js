@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { withAuth0 } from "@auth0/auth0-react";
 
 import Header from "./Header";
-// import Login from "./Login";
+import Login from "./Login";
 import Profile from "./Profile";
 import IsLoadingAndError from "./IsLoadingAndError";
 import Footer from "./Footer";
@@ -19,19 +19,18 @@ class App extends React.Component {
         <Router>
           <IsLoadingAndError>
             <Header />
-            <DateIdeas />
-            {/* <Switch>
+            <Switch>
               <Route exact path="/">
                 {this.props.auth0.isAuthenticated ? (
-                  < email={this.props.auth0.user.email} /> ////Change this
+                  <DateIdeas email={this.props.auth0.user.email} /> ////Change this
                 ) : (
                   <Login />
                 )}
               </Route>
-              <Route exact path="/profile"> */}
+              <Route exact path="/profile">
             <Profile />
-            {/* </Route> */}
-            {/* </Switch> */}
+            </Route>
+            </Switch>
             <Footer />
           </IsLoadingAndError>
         </Router>

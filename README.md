@@ -1,116 +1,70 @@
-# Date Night Idea
+# Getting Started with Create React App
 
-## Contributors
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-- Brian Lemons
+## Available Scripts
 
-- Ellis Yoo
+In the project directory, you can run:
 
-- Elijah Prom
+### `npm start`
 
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## About Date Night Idea Randomizer
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-- Date Night Idea Randomizer is an app that allows users to create individual profiles that allows them to save a list of randomly generated date ideas based off of that users desired date settings!
+### `npm test`
 
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Conflict Plan
+### `npm run build`
 
-### What is the group process to resolve conflict
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-- Honest, but tactful communication
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-- Set up Trello Board to assign tasks
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-- Ask, what they're struggling with (they could just be stuck, and be too nervous to ask for help)
+### `npm run eject`
 
-- Bring up any issues in the standups
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-### How and when will you escalate conflict?
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-- Group discussion during standup
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-- If no resolution, elevate issue to TA's or Lena
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-- Taking breaks to "cool off"
+## Learn More
 
-<!--  -->
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-## Communication Plan
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-### After Hours and Weekend
+### Code Splitting
 
-- Slack
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-- Remo
+### Analyzing the Bundle Size
 
-- 9AM-9PM Weekday.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-- Sunday, After 6PM
+### Making a Progressive Web App
 
-### Everyone's Voice is Heard
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-- Stand ups regularly (2hrs)
+### Advanced Configuration
 
-- Judgement free zone
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-- Positive feedback
+### Deployment
 
-- There's no such thing as a stupid question
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### Safe Environment
+### `npm run build` fails to minify
 
-- AGAIN. No stupid questions
-
-- Reinforcing that we are a team
-
-<!--  -->
-
-## Work Plan
-
-## Identify Tasks
-
-- Trello/Github Board
-  - Each person has a todo
-  - Each person has an in process
-  - Each person has a completed
-
-- User stories assigned to one of us
-
-<!--  -->
-
-## Git Process
-
-### What components will live on GitHub?
-
-- All
-
-### How will you share the repo with your team?
-
-- We will set up a GitHub project board
-
-### What is your git flow?
-
-- We will work off of a Dev branch, and make small commmits to that branch in order to push to the Main repo
-
-### Will you be using a PR review workflow?
-
-- YES
-  - 1 other Approval
-  - Anyone can Merge to Dev with another approval
-  - We will judge how often at our standups
-  - We will communicate that it's time to merge when we feel that we have hit a "User Story" goal
-
-## Top Pitches
-
-- Dating Randomizer
-  - Provide users with list of random activities, food, and drinks from their area so that they can enjoy their first dates without the hassle of planning it!
-
-- Code Fellows Hangouts
-  - Provide users with a place to post their thoughts for other Code Fellows students to see/share their projects
-  - users can like, share, and comment on others posts!
-
-
-## WireFrame
-
-- [Check Out Our WireFrame](https://docs.google.com/drawings/d/15WuHWQfBEsBd57k2BU9GhRx361je92Rjgo7yOYheoIs/edit)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

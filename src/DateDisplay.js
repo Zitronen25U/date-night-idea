@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { CardDeck } from "react-bootstrap";
 
 
 // [Math.floor(Math.random()*this.props.dates.length)]
@@ -17,6 +18,8 @@ class DateDisplay extends React.Component {
     return (
       <section id="dateCards">
         <h1>Your Date Ideas</h1>
+        <CardDeck>
+
         {
           shuffled.map((item, idx) => 
             <div key={idx}>
@@ -38,7 +41,9 @@ class DateDisplay extends React.Component {
               </Card>
             </div>
           )
-        })
+        }
+        </CardDeck>
+        
       </section >
     )
   };

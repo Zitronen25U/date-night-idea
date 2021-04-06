@@ -16,7 +16,7 @@ class Header extends React.Component {
         variant="dark"
         style={{ position: "sticky", top: "0", zIndex: "99" }}
       >
-        <Navbar.Brand>I Have A Hot Date</Navbar.Brand>
+        <Navbar.Brand>Date Night</Navbar.Brand>
         <Nav.Link className="ml-auto">
           <Link className="navItem" to="/">
             Home

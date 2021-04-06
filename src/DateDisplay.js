@@ -6,22 +6,14 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { CardDeck } from "react-bootstrap";
 
 
-// [Math.floor(Math.random()*this.props.dates.length)]
 class DateDisplay extends React.Component {
- 
   render() {
-    const datesArr = this.props.dates.sort(() => 0.5-Math.random());
-    let shuffled = datesArr.slice(0, 4)
-    console.log(shuffled);
-    // console.log('this is dates', this.props.dates)
-    // console.log('this is after math', datesArr);
     return (
       <section id="dateCards">
         <h1>Your Date Ideas</h1>
         <CardDeck>
-
         {
-          shuffled.map((item, idx) => 
+          this.props.shuffled.map((item, idx) => 
             <div key={idx}>
               <Card className="suggestionCard">
                 <Card.Body>
@@ -34,16 +26,16 @@ class DateDisplay extends React.Component {
                     <Card.Link href={item.restaurant_website}>Link</Card.Link>
                     </ListGroupItem> */}
                   <ListGroupItem>{item.address.formatted}</ListGroupItem>
-                  {/* <ListGroupItem>{item.cuisines}</ListGroupItem> */}
+                  <ListGroupItem>{item.cuisines?item.cuisines.join(', '):`Not Available`}</ListGroupItem>
                   </Card.Text>
                 </ListGroup>
-                <Button>Save This Suggestion</Button>
+                <Button onClick={()=>this.props.addToList(item)}>Save This Suggestion</Button>
               </Card>
             </div>
           )
         }
         </CardDeck>
-        
+        <Button onClick={this.props.getRandomRest}>Shuffle</Button>
       </section >
     )
   };

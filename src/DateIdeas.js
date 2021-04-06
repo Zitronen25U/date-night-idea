@@ -4,6 +4,7 @@ import DateDisplay from "./DateDisplay";
 
 import Forms from "./Form";
 
+const SERVER = process.env.REACT_APP_SERVER;
 class DateIdeas extends React.Component {
   constructor(props) {
     super(props);
@@ -23,20 +24,20 @@ class DateIdeas extends React.Component {
   updateCity = (city) => {
     this.setState({ city });
   };
-//   updateInOut = (inOut) => {
-//     this.setState({ inOut });
-//   };
-//   updateCheckbox = (e) => {
-//     const price = this.state.price;
-//     let index;
-//     if (e.target.checked) {
-//       price.push(e.target.value);
-//     } else {
-//       index = price.indexOf(e.target.value);
-//       price.splice(index, 1);
-//     }
-//     this.setState({ price: price });
-//   };
+  //   updateInOut = (inOut) => {
+  //     this.setState({ inOut });
+  //   };
+  //   updateCheckbox = (e) => {
+  //     const price = this.state.price;
+  //     let index;
+  //     if (e.target.checked) {
+  //       price.push(e.target.value);
+  //     } else {
+  //       index = price.indexOf(e.target.value);
+  //       price.splice(index, 1);
+  //     }
+  //     this.setState({ price: price });
+  //   };
 
   showDateDisplayHandler = () => {
     this.getRandomRest();
@@ -51,8 +52,8 @@ class DateIdeas extends React.Component {
   getLocation = async (e) => {
     try {
       e.preventDefault();
-      let key = "pk.85e693f4b02d0833e71ad94a7d714431";
-
+      //   let key = "pk.85e693f4b02d0833e71ad94a7d714431";
+      const key = process.env.REACT_APP_LOCATION_KEY;
       const locationIQurl = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${this.state.city}&format=json`;
       const location = await axios.get(locationIQurl);
       const locationArray = location.data;
@@ -69,7 +70,8 @@ class DateIdeas extends React.Component {
 
   getRestraurants = async (location) => {
     try {
-      const restraurant = await axios.get(`http://localhost:3001/dateIdeas`, {
+        const restraurant = await axios.get(`http://localhost:3001/dateIdeas`, {
+    //   const restraurant = await axios.get(`${SERVER}/dateIdeas`, {
         params: { lat: location.lat, lon: location.lon },
       });
       this.setState({ dates: restraurant.data });
@@ -83,8 +85,8 @@ class DateIdeas extends React.Component {
     console.log("from addToList", item, this.props.email);
     const idea = await axios.post(
       `http://localhost:3001/date`,
-      { item: item},
-      { params: { email: this.props.email } },
+      { item: item },
+      { params: { email: this.props.email } }
     );
     this.setState({ savedDates: idea.data });
   };

@@ -2,9 +2,7 @@ import React from "react";
 import axios from "axios";
 import DateDisplay from "./DateDisplay";
 
-// import Delete from "./Delete";
 import Forms from "./Form";
-// import Update from "./Update";
 
 class DateIdeas extends React.Component {
   constructor(props) {
@@ -18,29 +16,36 @@ class DateIdeas extends React.Component {
       inOut: "",
       price: [],
       showDateDisplay: false,
+      shuffled: [],
     };
   }
 
   updateCity = (city) => {
     this.setState({ city });
   };
-  updateInOut = (inOut) => {
-    this.setState({ inOut });
-  };
-  updateCheckbox = (e) => {
-    const price = this.state.price;
-    let index;
-    if (e.target.checked) {
-      price.push(e.target.value);
-    } else {
-      index = price.indexOf(e.target.value);
-      price.splice(index, 1);
-    }
-    this.setState({ price: price });
-  };
+//   updateInOut = (inOut) => {
+//     this.setState({ inOut });
+//   };
+//   updateCheckbox = (e) => {
+//     const price = this.state.price;
+//     let index;
+//     if (e.target.checked) {
+//       price.push(e.target.value);
+//     } else {
+//       index = price.indexOf(e.target.value);
+//       price.splice(index, 1);
+//     }
+//     this.setState({ price: price });
+//   };
 
   showDateDisplayHandler = () => {
+    this.getRandomRest();
     this.setState({ showDateDisplay: true });
+  };
+
+  getRandomRest = () => {
+    let shuffle = this.state.dates.sort(() => 0.5 - Math.random()).slice(0, 4);
+    this.setState({ shuffled: shuffle });
   };
 
   getLocation = async (e) => {
@@ -68,11 +73,21 @@ class DateIdeas extends React.Component {
         params: { lat: location.lat, lon: location.lon },
       });
       this.setState({ dates: restraurant.data });
+      this.getRandomRest();
     } catch (err) {
       console.log(err);
     }
   };
 
+  addToList = async (item) => {
+    console.log("from addToList", item, this.props.email);
+    const idea = await axios.post(
+      `http://localhost:3001/date`,
+      { item: item},
+      { params: { email: this.props.email } },
+    );
+    this.setState({ savedDates: idea.data });
+  };
   //   componentDidMount = () => {
   //     console.log(this.props.properties);
   //     const SERVER = "http://localhost:3001";
@@ -90,8 +105,6 @@ class DateIdeas extends React.Component {
   //   };
 
   render() {
-    console.log(this.state);
-
     return (
       <>
         {!this.state.showDateDisplay ? (
@@ -103,7 +116,12 @@ class DateIdeas extends React.Component {
             showDateDisplay={this.showDateDisplayHandler}
           />
         ) : (
-          <DateDisplay dates={this.state.dates} />
+          <DateDisplay
+            dates={this.state.dates}
+            shuffled={this.state.shuffled}
+            getRandomRest={this.getRandomRest}
+            addToList={this.addToList}
+          />
         )}
       </>
     );

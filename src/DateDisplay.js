@@ -33,7 +33,8 @@ class DateDisplay extends React.Component {
 												{item.address.formatted}
 											</ListGroupItem>
 											<ListGroupItem>
-												{item.cuisines[0] ? item.cuisines[0] : `Type of Food Not Listed`}
+												Type: <br></br>
+												{item.cuisines[0] ? item.cuisines[0] : `Not Listed`}
 											</ListGroupItem>
 										</Card.Text>
 									</ListGroup>

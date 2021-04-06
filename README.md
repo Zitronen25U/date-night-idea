@@ -8,6 +8,9 @@
 
 - Elijah Prom
 
+## Domain Model
+
+-[Our WireFrame Model](https://docs.google.com/drawings/d/15WuHWQfBEsBd57k2BU9GhRx361je92Rjgo7yOYheoIs/edit)
 
 ## About Date Night Idea Randomizer
 

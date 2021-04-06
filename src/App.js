@@ -13,8 +13,19 @@ import DateIdeas from "./DateIdeas";
 import Bio from "./Bio";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      savedDates: []
+    }
+  }
+
+  saveDateHandler = (savedDates) => {
+    this.setState({ savedDates })
+  }
+
   render() {
-    console.log("app", this.props);
+    console.log("app", this.state);
     return (
       <>
         <Router>
@@ -23,17 +34,22 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/">
                 {this.props.auth0.isAuthenticated ? (
-                  <DateIdeas email={this.props.auth0.user.email} /> ////Change this
+                  <DateIdeas
+                    email={this.props.auth0.user.email}
+                    saveDateHandler={this.saveDateHandler}
+                  /> ////Change this
                 ) : (
                   <Login />
                 )}
               </Route>
               <Route exact path="/profile">
-            <Profile />
-            </Route>
-            <Route exact path="/bio">
-            <Bio />
-            </Route>
+                <Profile
+                  savedDates={this.state.savedDates}
+                />
+              </Route>
+              <Route exact path="/bio">
+                <Bio />
+              </Route>
             </Switch>
             <Footer />
           </IsLoadingAndError>

@@ -1,0 +1,12 @@
+a {
+  color: #fff;
+}
+
+a:hover {
+  color: darkgrey;
+}
+
+.navItem {
+  color: #fff !important;
+  float: right;
+}

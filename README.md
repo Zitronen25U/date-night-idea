@@ -8,6 +8,15 @@
 
 - Elijah Prom
 
+## Domain Model
+
+-[Our WireFrame Model](https://docs.google.com/drawings/d/15WuHWQfBEsBd57k2BU9GhRx361je92Rjgo7yOYheoIs/edit)
+
+## About Date Night Idea Randomizer
+
+- Date Night Idea Randomizer is an app that allows users to create individual profiles that allows them to save a list of randomly generated date ideas based off of that users desired date settings!
+
+
 ## Conflict Plan
 
 ### What is the group process to resolve conflict
@@ -103,3 +112,8 @@
 - Code Fellows Hangouts
   - Provide users with a place to post their thoughts for other Code Fellows students to see/share their projects
   - users can like, share, and comment on others posts!
+
+
+## WireFrame
+
+- [Check Out Our WireFrame](https://docs.google.com/drawings/d/15WuHWQfBEsBd57k2BU9GhRx361je92Rjgo7yOYheoIs/edit)

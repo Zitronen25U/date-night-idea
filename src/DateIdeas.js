@@ -17,6 +17,7 @@ class DateIdeas extends React.Component {
       city: "",
       inOut: "",
       price: [],
+      showDateDisplay: false,
     };
   }
 
@@ -38,19 +39,23 @@ class DateIdeas extends React.Component {
     this.setState({ price: price });
   };
 
+  showDateDisplayHandler = () => {
+    this.setState({ showDateDisplay: true });
+  };
+
   getLocation = async (e) => {
     try {
       e.preventDefault();
-      let key = 'pk.85e693f4b02d0833e71ad94a7d714431'
-
+      let key = "pk.85e693f4b02d0833e71ad94a7d714431";
 
       const locationIQurl = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${this.state.city}&format=json`;
       const location = await axios.get(locationIQurl);
       const locationArray = location.data;
-      
+
       this.getRestraurants(locationArray[0]);
       this.setState({
         location: locationArray[0],
+        showDateDisplay: true,
       });
     } catch (err) {
       console.error(err);
@@ -62,7 +67,7 @@ class DateIdeas extends React.Component {
       const restraurant = await axios.get(`http://localhost:3001/dateIdeas`, {
         params: { lat: location.lat, lon: location.lon },
       });
-      this.setState({dates: restraurant.data})
+      this.setState({ dates: restraurant.data });
     } catch (err) {
       console.log(err);
     }
@@ -92,20 +97,25 @@ class DateIdeas extends React.Component {
   //   };
 
   render() {
-    // console.log(this.state);
+    console.log(this.state);
 
     return (
       <>
-        <Forms
-          getLocation={this.getLocation}
-          updateCity={this.updateCity}
-          updateInOut={this.updateInOut}
-          updateCheckbox={this.updateCheckbox}
-        />
-        <DateDisplay
-        dates={this.state.dates}
-        addItem={this.addItem}
-        />
+
+        {!this.state.showDateDisplay ? (
+          <Forms
+            getLocation={this.getLocation}
+            updateCity={this.updateCity}
+            updateInOut={this.updateInOut}
+            updateCheckbox={this.updateCheckbox}
+            showDateDisplay={this.showDateDisplayHandler}
+          />
+        ) : (
+          <DateDisplay
+           dates={this.state.dates} 
+           addItem={this.addItem}
+          />
+        )}
       </>
     );
   }

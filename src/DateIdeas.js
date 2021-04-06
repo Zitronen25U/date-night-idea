@@ -81,30 +81,32 @@ class DateIdeas extends React.Component {
 		}
 	};
 
-	addToList = async (item) => {
-		console.log('from addToList', item, this.props.email);
-		const idea = await axios.post(
-			`http://localhost:3001/date`,
-			{ item: item },
-			{ params: { email: this.props.email } }
-		);
-		this.setState({ savedDates: idea.data });
-	};
-	//   componentDidMount = () => {
-	//     console.log(this.props.properties);
-	//     const SERVER = "http://localhost:3001";
-	//     axios
-	//       .get(`${SERVER}/dates`, {
-	//         params: { email: this.props.properties.auth0.user.email },
-	//       })
-	//       .then((dates) => {
-	//         this.setState({ dates: dates.data });
-	//         console.log("dates", dates.data);
-	//       })
-	//       .catch((error) => {
-	//         console.log(error.message);
-	//       });
-	//   };
+
+  addToList = async (item) => {
+    console.log("from addToList", item, this.props.email);
+    const idea = await axios.post(
+      `http://localhost:3001/date`,
+      { item: item },
+      { params: { email: this.props.email } }
+    );
+    this.props.saveDateHandler(idea.data);
+    
+  };
+  //   componentDidMount = () => {
+  //     console.log(this.props.properties);
+  //     const SERVER = "http://localhost:3001";
+  //     axios
+  //       .get(`${SERVER}/dates`, {
+  //         params: { email: this.props.properties.auth0.user.email },
+  //       })
+  //       .then((dates) => {
+  //         this.setState({ dates: dates.data });
+  //         console.log("dates", dates.data);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error.message);
+  //       });
+  //   };
 
 	render() {
 		return (

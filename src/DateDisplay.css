@@ -1,0 +1,12 @@
+.text-center {
+	height: 100vh;
+}
+
+div.card-deck {
+	padding: 6rem;
+	display: flex;
+	justify-content: center;
+}
+h1 {
+	align-items: center;
+}

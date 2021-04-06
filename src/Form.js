@@ -29,7 +29,9 @@ class Forms extends React.Component {
             <Button
               variant="primary"
               type="submit"
-              onClick={this.props.showDateDisplayHandler}
+              onClick={
+                this.props.showDateDisplayHandler, this.props.getRandomRest
+              }
             >
               Submit
             </Button>

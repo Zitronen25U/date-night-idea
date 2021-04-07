@@ -48,22 +48,23 @@ class DateDisplay extends React.Component {
                 </Card>
               </div>
             ))}
+          </CardDeck>
+          <div id="drinkHolder">
             <Card style={{ maxWidth: '20rem' }}>
-              {/* <Card.Img variant="top" src="{this.props.drinks.drinks[0].strDrinkThumb" alt={this.props.drinks.drinks[0].strDrink} /> */}
+              <Card.Img variant="top" src={this.props.drinks.drinks[0].strDrinkThumb} alt={this.props.drinks.drinks[0].strDrink} />
               <Card.Body>
                 <Card.Title>{this.props.drinks.drinks[0].strDrink}</Card.Title>
-                <Card.Text>
-                  <ListGroupItem>
-                    {this.props.drinks.drinks[0].strInstructions}
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    {this.props.drinks.drinks[0].strAlchoholic ? this.props.drinks.drinks[0].strAlchoholic : `Assume it has Alcohol`}
-                  </ListGroupItem>
-
-                </Card.Text>
               </Card.Body>
+              <Card.Text>
+                <ListGroupItem>
+                  {this.props.drinks.drinks[0].strInstructions}
+                </ListGroupItem>
+                <ListGroupItem>
+                  {this.props.drinks.drinks[0].strAlchoholic ? this.props.drinks.drinks[0].strAlchoholic : `Assume it has Alcohol`}
+                </ListGroupItem>
+              </Card.Text>
             </Card>
-          </CardDeck>
+          </div>
           <Button
             onClick={this.props.getRandomRest}
             variant="danger"

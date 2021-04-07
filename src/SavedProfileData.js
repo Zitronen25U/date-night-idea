@@ -7,6 +7,7 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 
 class SavedProfileData extends React.Component {
 
+
   render() {
     console.log(this.props);
     return (
@@ -27,7 +28,6 @@ class SavedProfileData extends React.Component {
                       <ListGroupItem>{item.cuisines ? item.cuisines.join(', ') : `Not Available`}</ListGroupItem>
                     </Card.Text>
                   </ListGroup>
-                  <Button></Button>
                 </Card>
               </div>
             )

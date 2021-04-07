@@ -3,7 +3,7 @@ import Brian from './assets/Brian.jpeg';
 import Ellis from './assets/Ellis.jpeg';
 import Elijah from './assets/Elijah.jpeg';
 import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
+import CardDeck from 'react-bootstrap/CardDeck';
 
 
 
@@ -16,7 +16,7 @@ class Bio extends React.Component {
                  <Card.Body>
                  <Card.Title>Brian</Card.Title>
                  <Card.Text>Brian is an Army Veteran and Full Stack Software Engineer. 
-                 He served for 4 years as an Airborne Soldier and Signal Support Systems Specialist is Anchorage, Alaska. 
+                 He served for 4 years as an Airborne Soldier and Signal Support Systems Specialist in Anchorage, Alaska. 
                  Brian is advancing his career to become a Python Developer.  
                  </Card.Text>
                  </Card.Body>

@@ -7,6 +7,7 @@ import { CardDeck } from "react-bootstrap";
 import "./DateDisplay.css";
 
 class DateDisplay extends React.Component {
+
   render() {
     return (
       <section id="dateCards">
@@ -64,6 +65,7 @@ class DateDisplay extends React.Component {
       </section>
     );
   }
+
 }
 
 export default DateDisplay;

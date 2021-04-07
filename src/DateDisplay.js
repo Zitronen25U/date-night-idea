@@ -9,6 +9,8 @@ import "./DateDisplay.css";
 class DateDisplay extends React.Component {
 
   render() {
+    console.log(this.props.drinks.drinks[0].strDrink, 'drinks')
+    // console.log(this.props.drinks.strDrink)
     return (
       <section id="dateCards">
         <div class="text-center">
@@ -46,6 +48,21 @@ class DateDisplay extends React.Component {
                 </Card>
               </div>
             ))}
+            <Card style={{ maxWidth: '20rem' }}>
+              {/* <Card.Img variant="top" src="{this.props.drinks.drinks[0].strDrinkThumb" alt={this.props.drinks.drinks[0].strDrink} /> */}
+              <Card.Body>
+                <Card.Title>{this.props.drinks.drinks[0].strDrink}</Card.Title>
+                <Card.Text>
+                  <ListGroupItem>
+                    {this.props.drinks.drinks[0].strInstructions}
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    {this.props.drinks.drinks[0].strAlchoholic ? this.props.drinks.drinks[0].strAlchoholic : `Assume it has Alcohol`}
+                  </ListGroupItem>
+
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </CardDeck>
           <Button
             onClick={this.props.getRandomRest}

@@ -13,6 +13,7 @@ class DateIdeas extends React.Component {
       city: "",
       showDateDisplay: false,
       shuffled: [],
+      drinks: []
     };
   }
 
@@ -75,7 +76,16 @@ class DateIdeas extends React.Component {
     this.props.saveDateHandler(idea.data);
   };
 
+  componentDidMount = async () => {
+    const newDrink = await axios.get(
+      'https://www.thecocktaildb.com/api/json/v1/1/random.php',
+    )
+    console.log(newDrink.data);
+    this.setState({ drinks: newDrink.data })
+  }
+
   render() {
+    // console.log('testing drinkgs', this.state.drinks);
     return (
       <>
         {!this.state.showDateDisplay ? (
@@ -93,6 +103,7 @@ class DateIdeas extends React.Component {
             getRandomRest={this.getRandomRest}
             addToList={this.addToList}
             hideDateDisplayHandler={this.hideDateDisplayHandler}
+            drinks={this.state.drinks}
           />
         )}
       </>

@@ -4,8 +4,6 @@ import SavedProfileData from './SavedProfileData';
 
 const Profile = (props) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(props.savedDates);
-  // const {savedDates} = props
 
   if (isLoading) {
     return <div>Loading ...</div>;
@@ -19,6 +17,7 @@ const Profile = (props) => {
         <p>{user.email}</p>
         <SavedProfileData
           savedDates={props.savedDates}
+          email={user.email}
         />
       </div>
     )

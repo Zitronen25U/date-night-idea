@@ -12,12 +12,13 @@ const Profile = (props) => {
   return (
     isAuthenticated && (
       <div style={{ height: '95vh' }}>
-        <img src={user.picture} alt={user.name} />
+        {/* <img src={user.picture} alt={user.name} />
         <h2>{user.name}</h2>
-        <p>{user.email}</p>
+        <p>{user.email}</p> */}
         <SavedProfileData
           savedDates={props.savedDates}
           email={user.email}
+          name={user.name}
         />
       </div>
     )

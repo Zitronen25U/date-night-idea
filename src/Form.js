@@ -13,6 +13,7 @@ class Forms extends React.Component {
 						margin: '10% auto',
 						textAlign: 'center',
 						padding: '2rem',
+                        opacity:0.8,
 					}}
 				>
 					<Form onSubmit={(e) => this.props.getLocation(e)}>
@@ -27,7 +28,7 @@ class Forms extends React.Component {
 						<Button
 							variant="danger"
 							type="submit"
-							onClick={(this.props.showDateDisplayHandler, this.props.getRandomRest)}
+							onClick={(this.props.showDateDisplayHandler)}
 						>
 							Submit
 						</Button>

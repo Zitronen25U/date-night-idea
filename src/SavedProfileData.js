@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import axios from "axios";
+import StarRatings from "react-star-ratings";
 
 const SERVER = "http://localhost:3001";
 
@@ -13,9 +14,6 @@ class SavedProfileData extends React.Component {
     super(props);
     this.state = {
       saved: [],
-      isOpen: false,
-      indexOfCard:-1,
-      chosenDate:{}
     };
   }
 
@@ -31,8 +29,6 @@ class SavedProfileData extends React.Component {
     }
   };
 
-  closeModal = () => this.setState({ isOpen: false });
-
   deleteDate = async (index) => {
     await axios.delete(`${SERVER}/date/${index}`, {
       params: { email: this.props.email },
@@ -43,24 +39,39 @@ class SavedProfileData extends React.Component {
     this.setState({ saved: newDataArray });
   };
 
-  // updateDate = async(notes)=>{
-  //   let upDate.notes= notes
-  // }
+  changeRating = (newRating, index) => {
+    let items = [...this.state.saved];
+    let item = { ...items[index] };
+    item.rating = newRating;
+    items[index] = item;
+    this.setState({ saved: items });
+  };
 
-  // displayModal = (index)=>{
-  //   const chosenDate = this.state.saved[index];
-  //   this.setState({chosenDate,indexofCard:index,isOpen:true})
-  // }
+  updateDate = async (newRating, index) => {
+    let items = [...this.state.saved];
+    let item = { ...items[index] };
+    item.rating = newRating;
+    items[index] = item;
+    this.state.saved.splice(index, 1, item);
+    console.log("updateDate splice", item);
+    await axios.put(
+      `${SERVER}/date/${index}`,
+      { data: item },
+      {
+        params: { email: this.props.email },
+      }
+    );
+    this.setState({ saved: items });
+  };
 
   render() {
-    console.log(this.state);
     return (
       <section>
-        <h1>Your Saved Dates</h1>
+        <h1 style={{ color: "white" }}>{this.props.name}'s Saved Dates</h1>
         <CardDeck>
           {this.state.saved.map((item, idx) => (
             <div key={idx}>
-              <Card className="suggestionCard">
+              <Card className="suggestionCard" style={{ opacity: 0.7 }}>
                 <Card.Body>
                   <Card.Title>{item.restaurant_name}</Card.Title>
                 </Card.Body>
@@ -69,7 +80,7 @@ class SavedProfileData extends React.Component {
                     <ListGroupItem>
                       {" "}
                       Phone Number:<br></br>
-                      {item.restaurant_phone 
+                      {item.restaurant_phone
                         ? item.restaurant_phone
                         : `Phone Number Not Listed`}
                     </ListGroupItem>
@@ -79,9 +90,19 @@ class SavedProfileData extends React.Component {
                         ? item.cuisines[0]
                         : `Type of Food Not Listed`}
                     </ListGroupItem>
+                    <ListGroupItem>
+                      <StarRatings
+                        rating={this.state.saved[idx].rating}
+                        starRatedColor="red"
+                        changeRating={this.updateDate}
+                        numberOfStars={5}
+                        name={idx}
+                      />
+                    </ListGroupItem>
                   </Card.Text>
                 </ListGroup>
                 <Button
+                  variant="danger"
                   onClick={() => {
                     this.deleteDate(idx);
                   }}

@@ -12,22 +12,32 @@ import Footer from "./Footer";
 import DateIdeas from "./DateIdeas";
 import Bio from "./Bio";
 
+import bg from "./assets/bg.jpeg";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      savedDates: []
-    }
+      savedDates: [],
+    };
   }
 
   saveDateHandler = (savedDates) => {
-    this.setState({ savedDates })
-  }
+    this.setState({ savedDates });
+  };
 
   render() {
-    console.log("app", this.state);
+    var divStyle = {
+      backgroundImage: `url(${bg})`,
+      height: "auto",
+      minHeight: "100vh",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      overflow: "auto",
+    };
     return (
-      <>
+      <div style={divStyle}>
         <Router>
           <IsLoadingAndError>
             <Header />
@@ -43,9 +53,7 @@ class App extends React.Component {
                 )}
               </Route>
               <Route exact path="/profile">
-                <Profile
-                  savedDates={this.state.savedDates}
-                />
+                <Profile savedDates={this.state.savedDates} />
               </Route>
               <Route exact path="/bio">
                 <Bio />
@@ -54,7 +62,7 @@ class App extends React.Component {
             <Footer />
           </IsLoadingAndError>
         </Router>
-      </>
+      </div>
     );
   }
 }

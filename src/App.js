@@ -63,7 +63,6 @@ class App extends React.Component {
                 <Bio />
               </Route>
             </Switch>
-            {/* <Footer /> */}
           </IsLoadingAndError>
         </Router>
       </div>

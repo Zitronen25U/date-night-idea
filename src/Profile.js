@@ -11,10 +11,8 @@ const Profile = (props) => {
 
   return (
     isAuthenticated && (
-      <div style={{ height: '95vh' }}>
-        {/* <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p> */}
+      // <div style={{ height: '95vh' }}>
+      <div>
         <SavedProfileData
           savedDates={props.savedDates}
           savedDrinks={props.savedDrinks}

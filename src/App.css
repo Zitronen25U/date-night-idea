@@ -7,6 +7,12 @@
   pointer-events: none;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;900&family=Ubuntu&display=swap');
+
+body{
+  font-family: "Montserrat";
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

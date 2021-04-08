@@ -5,6 +5,8 @@ import DateDisplay from "./DateDisplay";
 import Forms from "./Form";
 
 const SERVER = process.env.REACT_APP_SERVER;
+// const SERVER = "http://localhost:3001"
+
 class DateIdeas extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,7 @@ class DateIdeas extends React.Component {
       city: "",
       showDateDisplay: false,
       shuffled: [],
-      drinks: []
+      drinks: [],
     };
   }
 
@@ -22,7 +24,8 @@ class DateIdeas extends React.Component {
   };
 
   hideDateDisplayHandler = () => {
-    this.setState({ showDateDisplay: false });
+    this.setState({ dates: [], showDateDisplay: false });
+    console.log("goBack", this.state.dates);
   };
 
   showDateDisplayHandler = () => {
@@ -33,13 +36,14 @@ class DateIdeas extends React.Component {
   getRandomRest = () => {
     let shuffle = this.state.dates.sort(() => 0.5 - Math.random()).slice(0, 4);
     this.setState({ shuffled: shuffle });
+    this.getDrink();
   };
 
   getLocation = async (e) => {
     try {
       e.preventDefault();
-      let key = "pk.85e693f4b02d0833e71ad94a7d714431";
-      // const key = process.env.REACT_APP_LOCATION_KEY;
+    //   let key = "pk.85e693f4b02d0833e71ad94a7d714431";
+      const key = process.env.REACT_APP_LOCATION_KEY;
       const locationIQurl = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${this.state.city}&format=json`;
       const location = await axios.get(locationIQurl);
       const locationArray = location.data;
@@ -56,8 +60,7 @@ class DateIdeas extends React.Component {
 
   getRestraurants = async (location) => {
     try {
-      const restraurant = await axios.get(`http://localhost:3001/dateIdeas`, {
-        //   const restraurant = await axios.get(`${SERVER}/dateIdeas`, {
+      const restraurant = await axios.get(`${SERVER}/dateIdeas`, {
         params: { lat: location.lat, lon: location.lon },
       });
       this.setState({ dates: restraurant.data });
@@ -69,20 +72,40 @@ class DateIdeas extends React.Component {
 
   addToList = async (item) => {
     const idea = await axios.post(
-      `http://localhost:3001/date`,
+      `${SERVER}/date`,
       { item: item },
       { params: { email: this.props.email } }
     );
     this.props.saveDateHandler(idea.data);
   };
 
-  componentDidMount = async () => {
+  getDrink = async () => {
     const newDrink = await axios.get(
-      'https://www.thecocktaildb.com/api/json/v1/1/random.php',
-    )
-    console.log(newDrink.data);
-    this.setState({ drinks: newDrink.data })
-  }
+      "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+    );
+    this.setState({ drinks: newDrink.data });
+  };
+
+  addDrink = async (item) => {
+    console.log(item);
+    //   drink_name: {type:String},
+    //   drink_img:{type:String},
+    //   drink_inst:{type:String}
+    const idea = await axios.post(
+      `${SERVER}/drink`,
+      {
+        drink_name: item.strDrink,
+        drink_img: item.strDrinkThumb,
+        drink_inst: item.strInstructions,
+      },
+      { params: { email: this.props.email } }
+    );
+    this.props.saveDrinkHandler(idea.data);
+  };
+
+  componentDidMount = async () => {
+    this.getDrink();
+  };
 
   render() {
     // console.log('testing drinkgs', this.state.drinks);
@@ -104,6 +127,7 @@ class DateIdeas extends React.Component {
             addToList={this.addToList}
             hideDateDisplayHandler={this.hideDateDisplayHandler}
             drinks={this.state.drinks}
+            addDrink={this.addDrink}
           />
         )}
       </>

@@ -27,7 +27,7 @@ class DateDisplay extends React.Component {
 										minHeight: '21rem',
 									}}
 								>
-									<Card.Body>
+									<Card.Body style={{ overflowY: 'scroll' }}>
 										<Card.Title>{item.restaurant_name}</Card.Title>
 									</Card.Body>
 									<ListGroup className="list-group-flush">
@@ -68,7 +68,7 @@ class DateDisplay extends React.Component {
 									alt={this.props.drinks.drinks[0].strDrink}
 								/>
 								<Card.Body>
-									<Card.Title style={{ maxHeight: '1.5rem', overflowY: 'hide' }}>
+									<Card.Title style={{ maxHeight: '1.5rem', overflowY: 'scroll' }}>
 										{this.props.drinks.drinks[0].strDrink}
 									</Card.Title>
 								</Card.Body>
@@ -85,24 +85,36 @@ class DateDisplay extends React.Component {
 									<ListGroupItem
 										style={{ minHeight: '19.25rem', maxHeight: '19.26rem', overflowY: 'scroll' }}
 									>
+										<u>
+											<strong>Instructions</strong>
+										</u>
+										<br />
 										{this.props.drinks.drinks[0].strInstructions}
 										<hr></hr>
-										Ingredients:
+										<u>
+											<strong>Type of Glass</strong>
+										</u>
+										<br />
+										{this.props.drinks.drinks[0].strGlass}
+										<hr />
+										<u>
+											<strong>Ingredients</strong>
+										</u>
 										<hr></hr>
-										<ol>
+										<ol style={{ textAlign: 'left' }}>
 											<li>
-												{this.props.drinks.drinks[0].strMeasure1}&nbsp;
-												{this.props.drinks.drinks[0].strIngredient1} 
+												&nbsp;{this.props.drinks.drinks[0].strMeasure1}&nbsp;
+												{this.props.drinks.drinks[0].strIngredient1}
 											</li>
 											<hr></hr>
 											<li>
-												{this.props.drinks.drinks[0].strMeasure2}&nbsp;
+												&nbsp;{this.props.drinks.drinks[0].strMeasure2}&nbsp;
 												{this.props.drinks.drinks[0].strIngredient2}
 											</li>
 											<hr></hr>
 											<li>
-												{this.props.drinks.drinks[0].strMeasure1}&nbsp;
-												{this.props.drinks.drinks[0].strIngredient3} 
+												&nbsp;{this.props.drinks.drinks[0].strMeasure1}&nbsp;
+												{this.props.drinks.drinks[0].strIngredient3}
 											</li>
 										</ol>
 									</ListGroupItem>

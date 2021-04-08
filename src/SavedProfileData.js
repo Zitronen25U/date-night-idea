@@ -7,7 +7,7 @@ import ListGroupItem from "react-bootstrap/ListGroupItem";
 import axios from "axios";
 import StarRatings from "react-star-ratings";
 
-const SERVER = process.env.REACT_APP_SERVER;
+const SERVER = 'https://datenight-server.herokuapp.com';
 // const SERVER = "http://localhost:3001"
 class SavedProfileData extends React.Component {
   constructor(props) {

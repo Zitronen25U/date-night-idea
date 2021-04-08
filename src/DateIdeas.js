@@ -4,7 +4,7 @@ import DateDisplay from "./DateDisplay";
 
 import Forms from "./Form";
 
-const SERVER = process.env.REACT_APP_SERVER;
+const SERVER = 'https://datenight-server.herokuapp.com';
 // const SERVER = "http://localhost:3001"
 
 class DateIdeas extends React.Component {
@@ -42,8 +42,8 @@ class DateIdeas extends React.Component {
   getLocation = async (e) => {
     try {
       e.preventDefault();
-    //   let key = "pk.85e693f4b02d0833e71ad94a7d714431";
-      const key = process.env.REACT_APP_LOCATION_KEY;
+      let key = "pk.85e693f4b02d0833e71ad94a7d714431";
+      // const key = process.env.REACT_APP_LOCATION_KEY;
       const locationIQurl = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${this.state.city}&format=json`;
       const location = await axios.get(locationIQurl);
       const locationArray = location.data;

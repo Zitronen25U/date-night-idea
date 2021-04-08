@@ -103,17 +103,17 @@ class DateDisplay extends React.Component {
 										<hr></hr>
 										<ol style={{ textAlign: 'left' }}>
 											<li>
-												&nbsp;{this.props.drinks.drinks[0].strMeasure1}&nbsp;
+                      &nbsp;{this.props.drinks.drinks[0].strMeasure1}&nbsp;
 												{this.props.drinks.drinks[0].strIngredient1}
 											</li>
 											<hr></hr>
 											<li>
-												&nbsp;{this.props.drinks.drinks[0].strMeasure2}&nbsp;
+                      &nbsp;{this.props.drinks.drinks[0].strMeasure2}&nbsp;
 												{this.props.drinks.drinks[0].strIngredient2}
 											</li>
 											<hr></hr>
 											<li>
-												&nbsp;{this.props.drinks.drinks[0].strMeasure1}&nbsp;
+                      &nbsp;{this.props.drinks.drinks[0].strMeasure1}&nbsp;
 												{this.props.drinks.drinks[0].strIngredient3}
 											</li>
 										</ol>

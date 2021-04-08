@@ -9,8 +9,6 @@ import "./DateDisplay.css";
 
 class DateDisplay extends React.Component {
   render() {
-    // console.log(this.props.drinks.drinks[0].strDrink, "drinks");
-    // console.log(this.props.drinks.strDrink)
     return (
       <section id="dateCards">
         <div class="text-center">
@@ -18,7 +16,17 @@ class DateDisplay extends React.Component {
           <CardDeck>
             {this.props.shuffled.map((item, idx) => (
               <div key={idx}>
-                <Card className="suggestionCard" style={{ opacity: 0.7 }}>
+                <Card
+                  className="suggestionCard"
+                  style={{
+                    margin: "1rem",
+                    maxWidth: "18rem",
+                    minWidth: "18rem",
+                    opacity: 0.7,
+                    maxHeight: "21rem",
+                    minHeight: "21rem",
+                  }}
+                >
                   <Card.Body>
                     <Card.Title>{item.restaurant_name}</Card.Title>
                   </Card.Body>
@@ -51,7 +59,15 @@ class DateDisplay extends React.Component {
           </CardDeck>
           <div id="drinkHolder">
             <CardGroup>
-              <Card style={{ maxWidth: "20rem", marginRight: 0 }}>
+              <Card
+                style={{
+                  
+                  marginRight:0,
+                  opacity: 0.8,
+                  maxWidth: "18rem",
+                  minWidth: "18rem",
+                }}
+              >
                 <Card.Img
                   variant="top"
                   src={this.props.drinks.drinks[0].strDrinkThumb}
@@ -63,11 +79,19 @@ class DateDisplay extends React.Component {
                   </Card.Title>
                 </Card.Body>
               </Card>
-              <Card style={{ maxWidth: "20rem" }}>
+              <Card
+                style={{
+                  maxWidth: "20rem",
+                  opacity: 0.8,
+                  maxWidth: "18rem",
+                  minWidth: "18rem",
+                }}
+              >
                 <Card.Text>
                   <ListGroupItem>
                     {this.props.drinks.drinks[0].strInstructions}
                   </ListGroupItem>
+                </Card.Text>
                   <Button
                     variant="danger"
                     onClick={() =>
@@ -76,13 +100,13 @@ class DateDisplay extends React.Component {
                   >
                     Save This Suggestion
                   </Button>
-                </Card.Text>
               </Card>
             </CardGroup>
           </div>
           <Button
             onClick={this.props.getRandomRest}
             variant="danger"
+            size ="lg"
             style={{ margin: "1rem", textAlign: "center" }}
           >
             Shuffle

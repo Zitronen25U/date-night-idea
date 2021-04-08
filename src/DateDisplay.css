@@ -1,9 +1,9 @@
-.text-center {
+/* .text-center {
 	height: 100vh;
-}
+} */
 
 div.card-deck {
-	padding: 6rem;
+	padding: 3rem;
 	display: flex;
 	justify-content: center;
 }

@@ -4,7 +4,7 @@ import DateDisplay from "./DateDisplay";
 
 import Forms from "./Form";
 
-const SERVER = 'https://datenight-server.herokuapp.com';
+const SERVER = "https://datenight-server.herokuapp.com";
 // const SERVER = "http://localhost:3001"
 
 class DateIdeas extends React.Component {
@@ -42,19 +42,19 @@ class DateIdeas extends React.Component {
   getLocation = async (e) => {
     try {
       e.preventDefault();
-    //   let key = "pk.85e693f4b02d0833e71ad94a7d714431";
-      const key = process.env.REACT_APP_LOCATION_KEY;
+      let key = "pk.85e693f4b02d0833e71ad94a7d714431";
+      // const key = process.env.REACT_APP_LOCATION_KEY;
       const locationIQurl = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${this.state.city}&format=json`;
       const location = await axios.get(locationIQurl);
       const locationArray = location.data;
-      this.getDrink()
+      this.getDrink();
       this.getRestraurants(locationArray[0]);
       this.setState({
         location: locationArray[0],
         showDateDisplay: true,
       });
     } catch (err) {
-      console.error(err);
+      alert(err);
     }
   };
 
@@ -66,41 +66,51 @@ class DateIdeas extends React.Component {
       this.setState({ dates: restraurant.data });
       this.getRandomRest();
     } catch (err) {
-      console.log(err);
+      alert(err)
     }
   };
 
   addToList = async (item) => {
-    const idea = await axios.post(
-      `${SERVER}/date`,
-      { item: item },
-      { params: { email: this.props.email } }
-    );
-    this.props.saveDateHandler(idea.data);
+    try {
+      const idea = await axios.post(
+        `${SERVER}/date`,
+        { item: item },
+        { params: { email: this.props.email } }
+      );
+      this.props.saveDateHandler(idea.data);
+      alert("Date Added");
+    } catch (err) {
+      alert(err)
+    }
   };
 
   getDrink = async () => {
-    const newDrink = await axios.get(
-      "https://www.thecocktaildb.com/api/json/v1/1/random.php"
-    );
-    this.setState({ drinks: newDrink.data });
+    try {
+      const newDrink = await axios.get(
+        "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+      );
+      this.setState({ drinks: newDrink.data });
+    } catch (err) {
+      alert(err)
+    }
   };
 
   addDrink = async (item) => {
-    console.log(item);
-    //   drink_name: {type:String},
-    //   drink_img:{type:String},
-    //   drink_inst:{type:String}
-    const idea = await axios.post(
-      `${SERVER}/drink`,
-      {
-        drink_name: item.strDrink,
-        drink_img: item.strDrinkThumb,
-        drink_inst: item.strInstructions,
-      },
-      { params: { email: this.props.email } }
-    );
-    this.props.saveDrinkHandler(idea.data);
+    try {
+      const idea = await axios.post(
+        `${SERVER}/drink`,
+        {
+          drink_name: item.strDrink,
+          drink_img: item.strDrinkThumb,
+          drink_inst: item.strInstructions,
+        },
+        { params: { email: this.props.email } }
+      );
+      this.props.saveDrinkHandler(idea.data);
+      alert("Drink Added")
+    } catch (err) {
+      alert(err)
+    }
   };
 
   componentDidMount = async () => {
@@ -108,7 +118,6 @@ class DateIdeas extends React.Component {
   };
 
   render() {
-    // console.log('testing drinkgs', this.state.drinks);
     return (
       <>
         {!this.state.showDateDisplay ? (

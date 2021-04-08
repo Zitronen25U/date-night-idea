@@ -19,12 +19,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       savedDates: [],
+      savedDrinks:[],
     };
   }
 
   saveDateHandler = (savedDates) => {
-    this.setState({ savedDates });
+    this.setState({ savedDates});
   };
+  saveDrinkHandler = (savedDrinks)=>{
+    this.setState({savedDrinks})
+  }
 
   render() {
     var divStyle = {
@@ -47,6 +51,7 @@ class App extends React.Component {
                   <DateIdeas
                     email={this.props.auth0.user.email}
                     saveDateHandler={this.saveDateHandler}
+                    saveDrinkHandler={this.saveDrinkHandler}
                   /> ////Change this
                 ) : (
                   <Login />
@@ -59,7 +64,7 @@ class App extends React.Component {
                 <Bio />
               </Route>
             </Switch>
-            <Footer />
+            {/* <Footer /> */}
           </IsLoadingAndError>
         </Router>
       </div>

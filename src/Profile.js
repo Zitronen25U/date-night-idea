@@ -17,6 +17,7 @@ const Profile = (props) => {
         <p>{user.email}</p> */}
         <SavedProfileData
           savedDates={props.savedDates}
+          savedDrinks={props.savedDrinks}
           email={user.email}
           name={user.name}
         />

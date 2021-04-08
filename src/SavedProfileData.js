@@ -7,13 +7,14 @@ import ListGroupItem from "react-bootstrap/ListGroupItem";
 import axios from "axios";
 import StarRatings from "react-star-ratings";
 
-const SERVER = "http://localhost:3001";
-
+const SERVER = process.env.REACT_APP_SERVER;
+// const SERVER = "http://localhost:3001"
 class SavedProfileData extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       saved: [],
+      savedDrinks: [],
     };
   }
 
@@ -22,11 +23,22 @@ class SavedProfileData extends React.Component {
       const saveDates = await axios.get(`${SERVER}/date`, {
         params: { email: this.props.email },
       });
+      const savedDrinks = await axios.get(`${SERVER}/drink`, {
+        params: { email: this.props.email },
+      });
       console.log(saveDates.data);
-      this.setState({ saved: saveDates.data });
+      this.setState({ saved: saveDates.data, savedDrinks: savedDrinks.data });
     } catch (err) {
       console.error(err);
     }
+  };
+
+  changeRating = (newRating, index) => {
+    let items = [...this.state.saved];
+    let item = { ...items[index] };
+    item.rating = newRating;
+    items[index] = item;
+    this.setState({ saved: items });
   };
 
   deleteDate = async (index) => {
@@ -37,14 +49,6 @@ class SavedProfileData extends React.Component {
       return index !== i;
     });
     this.setState({ saved: newDataArray });
-  };
-
-  changeRating = (newRating, index) => {
-    let items = [...this.state.saved];
-    let item = { ...items[index] };
-    item.rating = newRating;
-    items[index] = item;
-    this.setState({ saved: items });
   };
 
   updateDate = async (newRating, index) => {
@@ -64,7 +68,36 @@ class SavedProfileData extends React.Component {
     this.setState({ saved: items });
   };
 
+
+  deleteDrink = async (index) => {
+    await axios.delete(`${SERVER}/drink/${index}`, {
+      params: { email: this.props.email },
+    });
+    let newDataArray = this.state.savedDrinks.filter((d, i) => {
+      return index !== i;
+    });
+    this.setState({ savedDrinks: newDataArray });
+  };
+
+  updateDate = async (newRating, index) => {
+    let items = [...this.state.savedDrinks];
+    let item = { ...items[index] };
+    item.rating = newRating;
+    items[index] = item;
+    this.state.savedDrinks.splice(index, 1, item);
+    console.log("updateDate splice", item);
+    await axios.put(
+      `${SERVER}/drink/${index}`,
+      { data: item },
+      {
+        params: { email: this.props.email },
+      }
+    );
+    this.setState({ savedDrinks: items });
+  };
+
   render() {
+    console.log("saveDrinks",this.state.savedDrinks)
     return (
       <section>
         <h1 style={{ color: "white" }}>{this.props.name}'s Saved Dates</h1>
@@ -109,6 +142,22 @@ class SavedProfileData extends React.Component {
                 >
                   Delete
                 </Button>
+              </Card>
+            </div>
+          ))}
+        </CardDeck>
+        <CardDeck>
+          {this.state.savedDrinks.map((item,idx)=>(
+            <div key ={idx}>
+              <Card>
+                <Card.Img
+                variant='top'
+                src={item.drink_img}
+                aly={item.drink_name}
+                />
+                <Card.Body>
+                  <Card.Title>{item.drink_name}</Card.Title>
+                </Card.Body>
               </Card>
             </div>
           ))}

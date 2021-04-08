@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+import CardGroup from "react-bootstrap/CardGroup";
 import Button from "react-bootstrap/Button";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -7,9 +8,8 @@ import { CardDeck } from "react-bootstrap";
 import "./DateDisplay.css";
 
 class DateDisplay extends React.Component {
-
   render() {
-    console.log(this.props.drinks.drinks[0].strDrink, 'drinks')
+    // console.log(this.props.drinks.drinks[0].strDrink, "drinks");
     // console.log(this.props.drinks.strDrink)
     return (
       <section id="dateCards">
@@ -50,20 +50,35 @@ class DateDisplay extends React.Component {
             ))}
           </CardDeck>
           <div id="drinkHolder">
-            <Card style={{ maxWidth: '20rem' }}>
-              <Card.Img variant="top" src={this.props.drinks.drinks[0].strDrinkThumb} alt={this.props.drinks.drinks[0].strDrink} />
-              <Card.Body>
-                <Card.Title>{this.props.drinks.drinks[0].strDrink}</Card.Title>
-              </Card.Body>
-              <Card.Text>
-                <ListGroupItem>
-                  {this.props.drinks.drinks[0].strInstructions}
-                </ListGroupItem>
-                <ListGroupItem>
-                  {this.props.drinks.drinks[0].strAlchoholic ? this.props.drinks.drinks[0].strAlchoholic : `Assume it has Alcohol`}
-                </ListGroupItem>
-              </Card.Text>
-            </Card>
+            <CardGroup>
+              <Card style={{ maxWidth: "20rem", marginRight: 0 }}>
+                <Card.Img
+                  variant="top"
+                  src={this.props.drinks.drinks[0].strDrinkThumb}
+                  alt={this.props.drinks.drinks[0].strDrink}
+                />
+                <Card.Body>
+                  <Card.Title>
+                    {this.props.drinks.drinks[0].strDrink}
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+              <Card style={{ maxWidth: "20rem" }}>
+                <Card.Text>
+                  <ListGroupItem>
+                    {this.props.drinks.drinks[0].strInstructions}
+                  </ListGroupItem>
+                  <Button
+                    variant="danger"
+                    onClick={() =>
+                      this.props.addDrink(this.props.drinks.drinks[0])
+                    }
+                  >
+                    Save This Suggestion
+                  </Button>
+                </Card.Text>
+              </Card>
+            </CardGroup>
           </div>
           <Button
             onClick={this.props.getRandomRest}
@@ -72,18 +87,10 @@ class DateDisplay extends React.Component {
           >
             Shuffle
           </Button>
-          <Button
-            onClick={this.props.hideDateDisplayHandler}
-            variant="danger"
-            style={{ margin: "1rem", textAlign: "center" }}
-          >
-            Go Back
-          </Button>
         </div>
       </section>
     );
   }
-
 }
 
 export default DateDisplay;

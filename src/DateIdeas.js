@@ -4,39 +4,29 @@ import DateDisplay from "./DateDisplay";
 
 import Forms from "./Form";
 
+const SERVER = process.env.REACT_APP_SERVER;
+// const SERVER = "http://localhost:3001"
+
 class DateIdeas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: {},
-      dates: [], // displayed dates
-      savedDates: [], // saved dates
-      show: false,
+      dates: [],
       city: "",
-      inOut: "",
-      price: [],
       showDateDisplay: false,
       shuffled: [],
+      drinks: [],
     };
   }
 
   updateCity = (city) => {
     this.setState({ city });
   };
-//   updateInOut = (inOut) => {
-//     this.setState({ inOut });
-//   };
-//   updateCheckbox = (e) => {
-//     const price = this.state.price;
-//     let index;
-//     if (e.target.checked) {
-//       price.push(e.target.value);
-//     } else {
-//       index = price.indexOf(e.target.value);
-//       price.splice(index, 1);
-//     }
-//     this.setState({ price: price });
-//   };
+
+  hideDateDisplayHandler = () => {
+    this.setState({ dates: [], showDateDisplay: false });
+    console.log("goBack", this.state.dates);
+  };
 
   showDateDisplayHandler = () => {
     this.getRandomRest();
@@ -46,13 +36,14 @@ class DateIdeas extends React.Component {
   getRandomRest = () => {
     let shuffle = this.state.dates.sort(() => 0.5 - Math.random()).slice(0, 4);
     this.setState({ shuffled: shuffle });
+    this.getDrink();
   };
 
   getLocation = async (e) => {
     try {
       e.preventDefault();
-      let key = "pk.85e693f4b02d0833e71ad94a7d714431";
-
+    //   let key = "pk.85e693f4b02d0833e71ad94a7d714431";
+      const key = process.env.REACT_APP_LOCATION_KEY;
       const locationIQurl = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${this.state.city}&format=json`;
       const location = await axios.get(locationIQurl);
       const locationArray = location.data;
@@ -69,7 +60,7 @@ class DateIdeas extends React.Component {
 
   getRestraurants = async (location) => {
     try {
-      const restraurant = await axios.get(`http://localhost:3001/dateIdeas`, {
+      const restraurant = await axios.get(`${SERVER}/dateIdeas`, {
         params: { lat: location.lat, lon: location.lon },
       });
       this.setState({ dates: restraurant.data });
@@ -80,31 +71,44 @@ class DateIdeas extends React.Component {
   };
 
   addToList = async (item) => {
-    console.log("from addToList", item, this.props.email);
     const idea = await axios.post(
-      `http://localhost:3001/date`,
-      { item: item},
-      { params: { email: this.props.email } },
+      `${SERVER}/date`,
+      { item: item },
+      { params: { email: this.props.email } }
     );
-    this.setState({ savedDates: idea.data });
+    this.props.saveDateHandler(idea.data);
   };
-  //   componentDidMount = () => {
-  //     console.log(this.props.properties);
-  //     const SERVER = "http://localhost:3001";
-  //     axios
-  //       .get(`${SERVER}/dates`, {
-  //         params: { email: this.props.properties.auth0.user.email },
-  //       })
-  //       .then((dates) => {
-  //         this.setState({ dates: dates.data });
-  //         console.log("dates", dates.data);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error.message);
-  //       });
-  //   };
+
+  getDrink = async () => {
+    const newDrink = await axios.get(
+      "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+    );
+    this.setState({ drinks: newDrink.data });
+  };
+
+  addDrink = async (item) => {
+    console.log(item);
+    //   drink_name: {type:String},
+    //   drink_img:{type:String},
+    //   drink_inst:{type:String}
+    const idea = await axios.post(
+      `${SERVER}/drink`,
+      {
+        drink_name: item.strDrink,
+        drink_img: item.strDrinkThumb,
+        drink_inst: item.strInstructions,
+      },
+      { params: { email: this.props.email } }
+    );
+    this.props.saveDrinkHandler(idea.data);
+  };
+
+  componentDidMount = async () => {
+    this.getDrink();
+  };
 
   render() {
+    // console.log('testing drinkgs', this.state.drinks);
     return (
       <>
         {!this.state.showDateDisplay ? (
@@ -121,6 +125,9 @@ class DateIdeas extends React.Component {
             shuffled={this.state.shuffled}
             getRandomRest={this.getRandomRest}
             addToList={this.addToList}
+            hideDateDisplayHandler={this.hideDateDisplayHandler}
+            drinks={this.state.drinks}
+            addDrink={this.addDrink}
           />
         )}
       </>

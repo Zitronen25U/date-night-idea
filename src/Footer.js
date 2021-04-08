@@ -5,9 +5,11 @@ import Navbar from "react-bootstrap/Navbar";
 class Footer extends React.Component {
   render() {
     return (
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
-        <Navbar.Brand>&copy; Date Ideas</Navbar.Brand>
-      </Navbar>
+      <div className="fixed-bottom">
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Brand>&copy; Date night</Navbar.Brand>
+        </Navbar>
+      </div>
     );
   }
 }

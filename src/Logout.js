@@ -9,7 +9,7 @@ const LogoutButton = () => {
     isAuthenticated && (
       <Button
         onClick={() => logout({ returnTo: window.location.origin })}
-        variant="dark"
+        variant="danger"
         text="light"
       >
         Log Out

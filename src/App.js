@@ -12,33 +12,62 @@ import Footer from "./Footer";
 import DateIdeas from "./DateIdeas";
 import Bio from "./Bio";
 
+import bg from "./assets/bg.jpeg";
+
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      savedDates: [],
+      savedDrinks:[],
+    };
+  }
+
+  saveDateHandler = (savedDates) => {
+    this.setState({ savedDates});
+  };
+  saveDrinkHandler = (savedDrinks)=>{
+    this.setState({savedDrinks})
+  }
+
   render() {
-    console.log("app", this.props);
+    var divStyle = {
+      backgroundImage: `url(${bg})`,
+      height: "auto",
+      minHeight: "100vh",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      overflow: "auto",
+    };
     return (
-      <>
+      <div style={divStyle}>
         <Router>
           <IsLoadingAndError>
             <Header />
             <Switch>
               <Route exact path="/">
                 {this.props.auth0.isAuthenticated ? (
-                  <DateIdeas email={this.props.auth0.user.email} /> ////Change this
+                  <DateIdeas
+                    email={this.props.auth0.user.email}
+                    saveDateHandler={this.saveDateHandler}
+                    saveDrinkHandler={this.saveDrinkHandler}
+                  /> ////Change this
                 ) : (
                   <Login />
                 )}
               </Route>
               <Route exact path="/profile">
-            <Profile />
-            </Route>
-            <Route exact path="/bio">
-            <Bio />
-            </Route>
+                <Profile savedDates={this.state.savedDates} />
+              </Route>
+              <Route exact path="/bio">
+                <Bio />
+              </Route>
             </Switch>
-            <Footer />
+            {/* <Footer /> */}
           </IsLoadingAndError>
         </Router>
-      </>
+      </div>
     );
   }
 }

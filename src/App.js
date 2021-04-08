@@ -8,7 +8,6 @@ import Header from "./Header";
 import Login from "./Login";
 import Profile from "./Profile";
 import IsLoadingAndError from "./IsLoadingAndError";
-import Footer from "./Footer";
 import DateIdeas from "./DateIdeas";
 import Bio from "./Bio";
 

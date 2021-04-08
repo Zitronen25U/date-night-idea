@@ -28,19 +28,10 @@ class SavedProfileData extends React.Component {
       const savedDrinks = await axios.get(`${SERVER}/drink`, {
         params: { email: this.props.email },
       });
-      console.log(saveDates.data);
       this.setState({ saved: saveDates.data, savedDrinks: savedDrinks.data });
     } catch (err) {
       console.error(err);
     }
-  };
-
-  changeRating = (newRating, index) => {
-    let items = [...this.state.saved];
-    let item = { ...items[index] };
-    item.rating = newRating;
-    items[index] = item;
-    this.setState({ saved: items });
   };
 
   deleteDate = async (index) => {
@@ -99,16 +90,15 @@ class SavedProfileData extends React.Component {
   };
 
   render() {
-    console.log("saveDrinks", this.state.savedDrinks);
     return (
       <section>
-        <h1 style={{ color: "white" }}>{this.props.name}'s Saved Dates</h1>
+        <h1 style={{ color: "white", margin:"6% 10% 0"}}>{this.props.name}'s Saved Dates</h1>
         <CardDeck>
           {this.state.saved.map((item, idx) => (
             <div key={idx}>
               <Card
                 className="suggestionCard"
-                style={{ margin: "1rem", maxWidth: "22rem", opacity: 0.7 }}
+                style={{ margin: "1rem", maxWidth: "22rem", opacity: 0.7, maxHeight:"24rem", minHeight:"24rem"}}
               >
                 <Card.Body>
                   <Card.Title>{item.restaurant_name}</Card.Title>
@@ -154,7 +144,7 @@ class SavedProfileData extends React.Component {
         <CardDeck>
           {this.state.savedDrinks.map((item, idx) => (
             <div key={idx}>
-              <Card style={{ maxWidth: "18rem", margin: "1rem", opacity: 0.7 }}>
+              <Card style={{ maxWidth: "18rem", margin: "1rem", opacity: 0.8 }}>
                 <Card.Img
                   variant="top"
                   src={item.drink_img}
